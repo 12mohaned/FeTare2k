@@ -1,17 +1,17 @@
 package com.example.FeTare2k.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import com.example.FeTare2k.entities.PastRide;
 import com.example.FeTare2k.entities.Ride;
+import com.example.FeTare2k.entities.RideReservation;
 import com.example.FeTare2k.repos.Rides.PastRideRepository;
 import com.example.FeTare2k.repos.Rides.RideRepository;
+import com.example.FeTare2k.repos.Rides.RideReservationRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +22,8 @@ public class RideController {
     private RideRepository rideRepo;
     @Autowired
     private PastRideRepository pastrideRepo;
+    @Autowired
+    private RideReservationRepository ridereservationRepo;
 
     @GetMapping("/rides")
     public ResponseEntity<List<Ride>> availableRides() {
@@ -42,18 +44,14 @@ public class RideController {
     }
 
     @GetMapping("/upcomingrides/{id}")
-    public ResponseEntity<List<Ride>> upcomingRides(@PathVariable String id) {
-        List<Ride> availableRides = rideRepo.findAll();
-        List<Ride> upcomingRides = new ArrayList<Ride>();
-        for (int ride = 0; ride < availableRides.size(); ride++) {
-            if (availableRides.get(ride).getUsers().contains(id)) {
-                upcomingRides.add(availableRides.get(ride));
-            }
-        }
+    public ResponseEntity<List<RideReservation>> upcomingRides(@PathVariable String id) {
+        List<RideReservation> upcomingRides = ridereservationRepo.findBypassenger(id);
         System.out.println(upcomingRides);
-        if (availableRides.size() == 0) {
+        if (upcomingRides.size() == 0) {
             return ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok(upcomingRides);
     }
+
 }
