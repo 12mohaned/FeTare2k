@@ -44,7 +44,7 @@ public class Ride {
     @Setter
     public ArrayList<String> users;
 
-    static String[] Status = { "Completed", "Cancelled", "Pending", "Upcoming", };
+    static String[] Status = { "Completed", "Cancelled", "Pending", "Upcoming" };
 
     public Ride(int RideID, String pickup, String destination, String date, String time, int passengers, int luggage,
             double price, Profile driver) {

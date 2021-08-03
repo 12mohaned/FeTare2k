@@ -18,19 +18,15 @@ public class Profile {
     @Getter
     @Id
     public String email;
-    @Getter
-    @Setter
-    public String bio;
     @Setter
     private String password;
     @Getter
     public int phone;
 
-    public Profile(String email, String firstname, String lastname, String bio, int phone, String password) {
+    public Profile(String email, String firstname, String lastname, int phone, String password) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.bio = bio;
         this.phone = phone;
         this.password = password;
     }
