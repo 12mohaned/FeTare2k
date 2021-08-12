@@ -2,10 +2,6 @@ package com.example.FeTare2k.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.ArrayList;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -40,15 +36,10 @@ public class Ride {
     @JoinColumn(name = "driver", referencedColumnName = "email")
     public Profile driver;
 
-    @Getter
-    @Setter
-    public ArrayList<String> users;
-
     static String[] Status = { "Completed", "Cancelled", "Pending", "Upcoming" };
 
     public Ride(int RideID, String pickup, String destination, String date, String time, int passengers, int luggage,
             double price, Profile driver) {
-        this.users = new ArrayList<String>();
         this.id = RideID;
         this.pickup = pickup;
         this.destination = destination;
