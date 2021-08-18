@@ -57,8 +57,8 @@ public class RideController {
     }
 
     @PostMapping("/Addride")
-    public Ride newRide(@RequestBody Ride newEmployee) {
-        return rideRepo.save(newEmployee);
+    public Ride publishRide(@RequestBody Ride newRide) {
+        return rideRepo.save(newRide);
     }
 
 }
