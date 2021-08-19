@@ -7,7 +7,7 @@ import com.example.FeTare2k.entities.RideReservation;
 import com.example.FeTare2k.repos.Rides.PastRideRepository;
 import com.example.FeTare2k.repos.Rides.RideRepository;
 import com.example.FeTare2k.repos.Rides.RideReservationRepository;
-
+import com.example.FeTare2k.repos.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +26,8 @@ public class RideController {
     private PastRideRepository pastrideRepo;
     @Autowired
     private RideReservationRepository ridereservationRepo;
+    @Autowired
+    private ProfileRepository profileRepo;
 
     @GetMapping("/rides")
     public ResponseEntity<List<Ride>> availableRides() {
@@ -58,6 +60,7 @@ public class RideController {
 
     @PostMapping("/Addride")
     public Ride publishRide(@RequestBody Ride newRide) {
+        newRide.setDriver(profileRepo.findByEmail(newRide.getEmail()));
         return rideRepo.save(newRide);
     }
 

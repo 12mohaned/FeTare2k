@@ -2,6 +2,7 @@ package com.example.FeTare2k.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -34,14 +35,15 @@ public class Ride {
     @Getter
     public double price;
     @Getter
+    public String email;
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "driver", referencedColumnName = "email")
     public Profile driver;
 
-    static String[] Status = { "Completed", "Cancelled", "Pending", "Upcoming" };
-
     public Ride(int RideID, String pickup, String destination, LocalDateTime date, int passengers, int luggage,
-            double price, Profile driver) {
+            double price, String email, Profile driver) {
         this.id = RideID;
         this.pickup = pickup;
         this.destination = destination;
@@ -49,6 +51,7 @@ public class Ride {
         this.passengers = passengers;
         this.luggage = luggage;
         this.price = price;
+        this.email = email;
         this.driver = driver;
     }
 

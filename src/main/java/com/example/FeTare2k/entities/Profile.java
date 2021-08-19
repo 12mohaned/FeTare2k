@@ -2,7 +2,6 @@ package com.example.FeTare2k.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,17 +17,15 @@ public class Profile {
     @Getter
     @Id
     public String email;
-    @Setter
-    private String password;
+
     @Getter
     public int phone;
 
-    public Profile(String email, String firstname, String lastname, int phone, String password) {
+    public Profile(String email, String firstname, String lastname, int phone) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
-        this.password = password;
     }
 
 }

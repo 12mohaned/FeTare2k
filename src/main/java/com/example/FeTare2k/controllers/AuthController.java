@@ -23,11 +23,6 @@ public class AuthController {
     @PostMapping(value = RESET_PATH)
     public String ResetPasswordSubmit(String password) {
         boolean token = password != null ? true : false;
-        if (token) {
-            Profile profile = ProfileRepo.findByEmail("mohaned.mashaly12@gmail.com");
-            profile.setPassword("tarekandamr");
-            ProfileRepo.save(profile);
-        }
         return "reset_password";
     }
 
