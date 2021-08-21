@@ -9,4 +9,5 @@ public interface ProfileRepository extends JpaRepository<Profile, String> {
     Profile findByPhone(int phone);
 
     Profile findByEmail(String email);
+
 }
